@@ -10,20 +10,18 @@ public class AuthorizationContext {
     private DatabaseAuthenticationStrategy databaseAuthenticationStrategy;
     private LdapAuthenticationStrategy ldapAuthenticationStrategy;
 
-    @Autowired
     public AuthorizationContext(DatabaseAuthenticationStrategy databaseAuthenticationStrategy, LdapAuthenticationStrategy ldapAuthenticationStrategy) {
         this.databaseAuthenticationStrategy = databaseAuthenticationStrategy;
         this.ldapAuthenticationStrategy = ldapAuthenticationStrategy;
     }
 
-    public Authentication decideAuthentication(String username, String password, AuthenticationSource source){
+    public Authentication decideAuthentication(String username, String password){
 
-       if(source == AuthenticationSource.DATABASE){
+       if(username.matches("[0-9]+")){
+           System.out.println("DATABASE");
            return databaseAuthenticationStrategy.authenticate(username,password);
        }
-       if(source == AuthenticationSource.LDAP){
-            return ldapAuthenticationStrategy.authenticate(username,password);
-       }
-       return null;
+        System.out.println("LDAP");
+        return ldapAuthenticationStrategy.authenticate(username,password);
     }
 }

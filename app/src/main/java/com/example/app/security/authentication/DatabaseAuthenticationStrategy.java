@@ -1,6 +1,5 @@
 package com.example.app.security.authentication;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,7 +11,7 @@ public class DatabaseAuthenticationStrategy implements AuthenticateStrategyInter
 
     private AuthenticationManager authenticationManager;
 
-    @Autowired
+
     public DatabaseAuthenticationStrategy(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
